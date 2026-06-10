@@ -93,7 +93,7 @@ class CheckerService : Service() {
         val now = System.currentTimeMillis()
         if (now - lastIpFetch < IP_REFRESH_MS) return
         lastIpFetch = now
-        val info = IpLookup.fetch() ?: return
+        val info = IpLookup.fetch(IpLookup.preferChinese(prefs)) ?: return
         prefs.edit()
             .putString("last_ip", info.ip)
             .putString("last_region", info.region)

@@ -254,8 +254,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshIp() {
         ipText.text = getString(R.string.ip_querying)
+        val chinese = IpLookup.preferChinese(prefs)
         Thread {
-            val info = IpLookup.fetch()
+            val info = IpLookup.fetch(chinese)
             runOnUiThread {
                 if (isFinishing || isDestroyed) return@runOnUiThread
                 if (info != null) {
