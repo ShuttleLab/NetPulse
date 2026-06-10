@@ -50,8 +50,11 @@ object IpLookup {
     /**
      * ip.im/info：纯文本，英文地名。正文为 `Key:Value` 行（外加无关的 ASCII 横幅），
      * 逐行按首个冒号拆分即可，忽略不带冒号的横幅行。
+     *
+     * 注意：该站按 User-Agent 区分响应——只有 UA 含 "curl" 时才返回纯文本，
+     * 否则（默认 Dalvik UA）返回一个 HTML 跳转页，解析不到 IP。故必须伪装 UA。
      */
-    private fun fetchIpIm(): IpInfo? = request(IPIM_API) { body ->
+    private fun fetchIpIm(): IpInfo? = request(IPIM_API, userAgent = "NetPulse curl/8.4.0") { body ->
         val map = HashMap<String, String>()
         body.lineSequence().forEach { line ->
             val i = line.indexOf(':')
@@ -72,12 +75,13 @@ object IpLookup {
         IpInfo(ip, region, isp)
     }
 
-    private inline fun request(api: String, parse: (String) -> IpInfo?): IpInfo? {
+    private inline fun request(api: String, userAgent: String? = null, parse: (String) -> IpInfo?): IpInfo? {
         return try {
             val conn = (URL(api).openConnection() as HttpURLConnection).apply {
                 connectTimeout = 8000
                 readTimeout = 8000
                 requestMethod = "GET"
+                if (userAgent != null) setRequestProperty("User-Agent", userAgent)
             }
             if (conn.responseCode != 200) {
                 conn.disconnect()
