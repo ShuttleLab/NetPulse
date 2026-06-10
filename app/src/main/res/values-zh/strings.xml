@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 中文 -->
+<resources>
+    <!-- Status -->
+    <string name="status_idle">未启动</string>
+    <string name="status_checking">检测中…</string>
+    <string name="status_stopped">服务已停止</string>
+    <string name="status_ok">外网可访问</string>
+    <string name="status_fail">外网不可访问</string>
+    <string name="latency_fmt">延迟 %1$dms</string>
+    <string name="conn_failed">连接失败</string>
+
+    <!-- Exit IP -->
+    <string name="refresh">刷新</string>
+    <string name="ip_unknown">出口 IP 未知</string>
+    <string name="ip_querying">查询中…</string>
+    <string name="ip_lookup_failed">查询失败，点「刷新」重试</string>
+
+    <!-- Toggle -->
+    <string name="btn_start">▶  启动检测</string>
+    <string name="btn_stop">⏹  停止检测</string>
+    <string name="toast_started">✅ 检测服务已启动</string>
+    <string name="toast_stopped">⏹ 检测服务已停止</string>
+
+    <!-- Log -->
+    <string name="log_title">📋 检测日志</string>
+    <string name="clear">清空</string>
+    <string name="log_empty">暂无记录</string>
+    <string name="countdown_fmt">⏱ 下次检测还剩 %1$d 秒</string>
+    <string name="log_up">● 通</string>
+    <string name="log_down">● 断</string>
+    <string name="log_ip_unknown">IP 未知</string>
+    <string name="log_ip_changed_fmt">⚡ %1$s  (IP 变更)</string>
+    <string name="toast_no_ip">该记录暂无 IP</string>
+    <string name="toast_ip_copied_fmt">已复制 IP：%1$s</string>
+
+    <!-- Settings -->
+    <string name="settings_title">⚙️ 检测设置</string>
+    <string name="settings_url_label">检测目标网址（点击选预设，也可手动输入）</string>
+    <string name="settings_interval_label">检测间隔（秒，5–3600）</string>
+    <string name="settings_logkeep_label">检测日志保留条数（10–1000）</string>
+    <string name="settings_vibrate">断线时震动提醒</string>
+    <string name="settings_sound">断线时声音提醒</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_save">保存</string>
+    <string name="settings_tip">💡 修改后下次检测周期即生效。调小日志保留条数会立即裁剪历史记录。</string>
+    <string name="toast_saved">✅ 设置已保存</string>
+    <string name="lang_system">跟随系统</string>
+    <string name="lang_en">English</string>
+    <string name="lang_zh">中文</string>
+
+    <!-- About -->
+    <string name="about_title">ℹ️ 关于</string>
+    <string name="about_desc">实时监控外网连接状态，显示当前出口 IP 与归属地，断线即时提醒。</string>
+    <string name="about_by">由 ShuttleLab 出品</string>
+    <string name="about_by_desc">一个专注实用工具的开源 / SaaS 团队，欢迎了解更多。</string>
+    <string name="about_website">🌍  官网    shuttlelab.org</string>
+    <string name="about_github">🐙  GitHub    github.com/ShuttleLab</string>
+
+    <!-- Notification -->
+    <string name="notif_checking">⏳ 检测中…</string>
+    <string name="notif_online_fmt">🟢 外网畅通（%1$dms）</string>
+    <string name="notif_online">🟢 外网畅通</string>
+    <string name="notif_offline">🔴 外网不可访问</string>
+    <string name="notif_channel_name">网络连通性检测</string>
+    <string name="notif_channel_desc">显示当前外网连接状态</string>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Default locale: English -->
+<resources>
+    <string name="app_name">NetPulse</string>
+
+    <!-- Preset target URLs (generate_204 connectivity endpoints) -->
+    <string-array name="url_presets">
+        <item>https://www.google.com/generate_204</item>
+        <item>https://clients3.google.com/generate_204</item>
+        <item>https://www.youtube.com/generate_204</item>
+        <item>https://www.gstatic.com/generate_204</item>
+    </string-array>
+
+    <!-- Status -->
+    <string name="status_idle">Not started</string>
+    <string name="status_checking">Checking…</string>
+    <string name="status_stopped">Service stopped</string>
+    <string name="status_ok">Internet reachable</string>
+    <string name="status_fail">Internet unreachable</string>
+    <string name="latency_fmt">Latency %1$dms</string>
+    <string name="conn_failed">Connection failed</string>
+
+    <!-- Exit IP -->
+    <string name="refresh">Refresh</string>
+    <string name="ip_unknown">Exit IP unknown</string>
+    <string name="ip_querying">Querying…</string>
+    <string name="ip_lookup_failed">Lookup failed, tap Refresh</string>
+
+    <!-- Toggle -->
+    <string name="btn_start">▶  Start</string>
+    <string name="btn_stop">⏹  Stop</string>
+    <string name="toast_started">✅ Monitoring started</string>
+    <string name="toast_stopped">⏹ Monitoring stopped</string>
+
+    <!-- Log -->
+    <string name="log_title">📋 Check log</string>
+    <string name="clear">Clear</string>
+    <string name="log_empty">No records yet</string>
+    <string name="countdown_fmt">⏱ Next check in %1$ds</string>
+    <string name="log_up">● Up</string>
+    <string name="log_down">● Down</string>
+    <string name="log_ip_unknown">IP unknown</string>
+    <string name="log_ip_changed_fmt">⚡ %1$s  (IP changed)</string>
+    <string name="toast_no_ip">No IP for this record</string>
+    <string name="toast_ip_copied_fmt">IP copied: %1$s</string>
+
+    <!-- Settings -->
+    <string name="settings_title">⚙️ Settings</string>
+    <string name="settings_url_label">Target URL (tap to pick a preset, or type your own)</string>
+    <string name="settings_interval_label">Check interval (seconds, 5–3600)</string>
+    <string name="settings_logkeep_label">Log entries to keep (10–1000)</string>
+    <string name="settings_vibrate">Vibrate on disconnect</string>
+    <string name="settings_sound">Sound on disconnect</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_tip">💡 Changes take effect on the next check cycle. Lowering the log limit trims history immediately.</string>
+    <string name="toast_saved">✅ Settings saved</string>
+    <string name="lang_system">Follow system</string>
+    <string name="lang_en">English</string>
+    <string name="lang_zh">中文</string>
+
+    <!-- About -->
+    <string name="about_title">ℹ️ About</string>
+    <string name="about_desc">Monitors whether the open internet is reachable, shows your current exit IP and its location, and alerts you the moment it drops.</string>
+    <string name="about_by">Made by ShuttleLab</string>
+    <string name="about_by_desc">A team building practical open-source / SaaS tools. Learn more below.</string>
+    <string name="about_website">🌍  Website    shuttlelab.org</string>
+    <string name="about_github">🐙  GitHub    github.com/ShuttleLab</string>
+
+    <!-- Notification -->
+    <string name="notif_checking">⏳ Checking…</string>
+    <string name="notif_online_fmt">🟢 Online (%1$dms)</string>
+    <string name="notif_online">🟢 Online</string>
+    <string name="notif_offline">🔴 Offline</string>
+    <string name="notif_channel_name">Connectivity status</string>
+    <string name="notif_channel_desc">Shows current internet connectivity</string>
+</resources>

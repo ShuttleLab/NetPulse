@@ -1,0 +1,7 @@
+.claude/
+
+*.jks
+*.keystore
+*.jks.b64
+key.properties
+
