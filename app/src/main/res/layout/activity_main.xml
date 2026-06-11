@@ -183,6 +183,14 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="10dp"/>
 
+            <!-- Latency trend chart -->
+            <org.shuttlelab.netpulse.LatencyChartView
+                android:id="@+id/latencyChart"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone"/>
+
             <TextView
                 android:id="@+id/logEmpty"
                 android:layout_width="match_parent"

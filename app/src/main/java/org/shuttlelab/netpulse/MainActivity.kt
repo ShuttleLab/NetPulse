@@ -27,6 +27,11 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        /** 折线图展示的最近检测次数 */
+        private const val CHART_POINTS = 60
+    }
+
     private lateinit var prefs: SharedPreferences
     private lateinit var statusDot: View
     private lateinit var statusText: TextView
@@ -41,7 +46,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var logList: ListView
     private lateinit var logEmpty: TextView
     private lateinit var clearLogBtn: TextView
+    private lateinit var latencyChart: LatencyChartView
     private lateinit var logAdapter: LogAdapter
+
+    // 延迟着色：默认色不变，>500ms 黄、>1000ms 红
+    private val pingDefaultTop = Color.parseColor("#CCCCCC")
+    private val pingDefaultLog = Color.parseColor("#888888")
+    private val pingWarn = Color.parseColor("#FFD600")
+    private val pingBad = Color.parseColor("#FF5252")
+
+    private fun latencyColor(ping: Long, default: Int): Int = when {
+        ping > 1000 -> pingBad
+        ping > 500 -> pingWarn
+        else -> default
+    }
 
     private var lastUiSuccess: Boolean? = null
     private val handler = Handler(Looper.getMainLooper())
@@ -90,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         logList = findViewById(R.id.logList)
         logEmpty = findViewById(R.id.logEmpty)
         clearLogBtn = findViewById(R.id.clearLogBtn)
+        latencyChart = findViewById(R.id.latencyChart)
 
         logAdapter = LogAdapter(emptyList())
         logList.adapter = logAdapter
@@ -205,10 +224,12 @@ class MainActivity : AppCompatActivity() {
             statusDot.setBackgroundResource(R.drawable.dot_green)
             statusText.text = getString(R.string.status_ok)
             pingText.text = if (ping > 0) getString(R.string.latency_fmt, ping) else ""
+            pingText.setTextColor(latencyColor(ping, pingDefaultTop))
         } else {
             statusDot.setBackgroundResource(R.drawable.dot_red)
             statusText.text = getString(R.string.status_fail)
             pingText.text = getString(R.string.conn_failed)
+            pingText.setTextColor(pingDefaultTop)
         }
     }
 
@@ -293,11 +314,20 @@ class MainActivity : AppCompatActivity() {
         if (items.isEmpty()) {
             logEmpty.visibility = View.VISIBLE
             logList.visibility = View.GONE
+            latencyChart.visibility = View.GONE
         } else {
             logEmpty.visibility = View.GONE
             logList.visibility = View.VISIBLE
             logAdapter.items = items
             logAdapter.notifyDataSetChanged()
+            // 折线图：取最近若干次，按时间升序（最旧在左、最新在右）
+            val recent = items.take(CHART_POINTS).reversed().map { if (it.ok) it.ping else -1L }
+            if (recent.any { it > 0 }) {
+                latencyChart.setData(recent)
+                latencyChart.visibility = View.VISIBLE
+            } else {
+                latencyChart.visibility = View.GONE
+            }
         }
     }
 
@@ -318,7 +348,10 @@ class MainActivity : AppCompatActivity() {
                 res.text = getString(R.string.log_down)
                 res.setTextColor(Color.parseColor("#FF5252"))
             }
-            v.findViewById<TextView>(R.id.logPing).text = if (e.ping > 0) "${e.ping}ms" else "--"
+            val pingView = v.findViewById<TextView>(R.id.logPing)
+            pingView.text = if (e.ping > 0) "${e.ping}ms" else "--"
+            // 复用视图必须每次显式设色，避免颜色串行
+            pingView.setTextColor(latencyColor(e.ping, pingDefaultLog))
 
             val base = when {
                 e.ip.isBlank() -> getString(R.string.log_ip_unknown)
