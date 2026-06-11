@@ -43,13 +43,18 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon
+          # APK = GitHub 直装；AAB = 上传 Google Play
+          ./gradlew assembleRelease bundleRelease --no-daemon
 
-      - name: Rename APK
-        run: cp app/build/outputs/apk/release/app-release.apk "NetPulse-${{ github.ref_name }}.apk"
+      - name: Rename artifacts
+        run: |
+          cp app/build/outputs/apk/release/app-release.apk "NetPulse-${{ github.ref_name }}.apk"
+          cp app/build/outputs/bundle/release/app-release.aab "NetPulse-${{ github.ref_name }}.aab"
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: NetPulse-${{ github.ref_name }}.apk
+          files: |
+            NetPulse-${{ github.ref_name }}.apk
+            NetPulse-${{ github.ref_name }}.aab
           generate_release_notes: true
