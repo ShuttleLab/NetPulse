@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace 'org.shuttlelab.netpulse'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "org.shuttlelab.netpulse"
         minSdk 26
-        targetSdk 34
-        versionCode 4
-        versionName "1.0.3"
+        targetSdk 36
+        versionCode 5
+        versionName "1.0.4"
     }
 
     // 发布签名：CI 通过环境变量注入；本地/无密钥时回退到 debug 签名，保证 assembleRelease 不报错

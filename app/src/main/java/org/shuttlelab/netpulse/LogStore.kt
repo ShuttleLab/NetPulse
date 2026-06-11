@@ -18,7 +18,7 @@ data class CheckLog(
  * 存在 SharedPreferences 里（JSON 数组，最新的在前）。
  */
 object LogStore {
-    private const val PREFS = "vpnchecker"
+    private const val PREFS = "netpulse"
     private const val KEY = "check_log"
     const val DEFAULT_KEEP = 100
     const val MIN_KEEP = 10

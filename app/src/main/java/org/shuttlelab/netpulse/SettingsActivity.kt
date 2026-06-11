@@ -1,7 +1,10 @@
 package org.shuttlelab.netpulse
 
+import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -33,7 +36,8 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        prefs = getSharedPreferences("vpnchecker", MODE_PRIVATE)
+        applyEdgeToEdgeInsets(findViewById(R.id.rootScroll))
+        prefs = getSharedPreferences("netpulse", MODE_PRIVATE)
 
         urlInput = findViewById(R.id.urlInput)
         intervalInput = findViewById(R.id.intervalInput)
@@ -55,9 +59,28 @@ class SettingsActivity : AppCompatActivity() {
 
         languageValue.text = langLabel(currentLang())
         findViewById<LinearLayout>(R.id.languageRow).setOnClickListener { showLanguageDialog() }
+        findViewById<LinearLayout>(R.id.batteryRow).setOnClickListener { openBatterySettings() }
 
         findViewById<ImageView>(R.id.backBtn).setOnClickListener { finish() }
         findViewById<Button>(R.id.saveBtn).setOnClickListener { save() }
+    }
+
+    /**
+     * 打开系统「电池优化」设置列表，让用户自行将本应用排除（提升后台保活）。
+     * 用 ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS（仅打开列表），
+     * 不使用需 REQUEST_IGNORE_BATTERY_OPTIMIZATIONS 权限的直接豁免弹窗，符合 Play 政策。
+     */
+    private fun openBatterySettings() {
+        val intent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
+        } else {
+            Intent(Settings.ACTION_SETTINGS)
+        }
+        try {
+            startActivity(intent)
+        } catch (_: Exception) {
+            try { startActivity(Intent(Settings.ACTION_SETTINGS)) } catch (_: Exception) {}
+        }
     }
 
     private fun currentLang() = prefs.getString("lang", "system") ?: "system"

@@ -42,6 +42,7 @@
     <string name="settings_vibrate">断线时震动提醒</string>
     <string name="settings_sound">断线时声音提醒</string>
     <string name="settings_language">语言</string>
+    <string name="settings_battery">电池优化（提升后台保活）</string>
     <string name="settings_save">保存</string>
     <string name="settings_tip">💡 修改后下次检测周期即生效。调小日志保留条数会立即裁剪历史记录。</string>
     <string name="toast_saved">✅ 设置已保存</string>

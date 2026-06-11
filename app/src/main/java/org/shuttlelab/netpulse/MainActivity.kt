@@ -9,13 +9,10 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.os.PowerManager
-import android.provider.Settings
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -87,8 +84,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        applyEdgeToEdgeInsets(findViewById(R.id.rootScroll))
 
-        prefs = getSharedPreferences("vpnchecker", MODE_PRIVATE)
+        prefs = getSharedPreferences("netpulse", MODE_PRIVATE)
 
         // 迁移旧版默认地址（google.com 首页）到 generate_204 检测端点
         if (prefs.getString("url", null) == CheckerService.LEGACY_DEFAULT_URL) {
@@ -129,7 +127,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         requestNotificationPermission()
-        requestBatteryOptimizationExemption()
 
         showCachedIp()
         refreshIp()
@@ -380,19 +377,6 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (!NotificationManagerCompat.from(this).areNotificationsEnabled()) {
                 requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 1001)
-            }
-        }
-    }
-
-    private fun requestBatteryOptimizationExemption() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val pm = getSystemService(POWER_SERVICE) as PowerManager
-            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
-                try {
-                    val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
-                    intent.data = Uri.parse("package:$packageName")
-                    startActivity(intent)
-                } catch (_: Exception) {}
             }
         }
     }

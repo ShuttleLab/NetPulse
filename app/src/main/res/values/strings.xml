@@ -52,6 +52,7 @@
     <string name="settings_vibrate">Vibrate on disconnect</string>
     <string name="settings_sound">Sound on disconnect</string>
     <string name="settings_language">Language</string>
+    <string name="settings_battery">Battery optimization (improve background reliability)</string>
     <string name="settings_save">Save</string>
     <string name="settings_tip">💡 Changes take effect on the next check cycle. Lowering the log limit trims history immediately.</string>
     <string name="toast_saved">✅ Settings saved</string>

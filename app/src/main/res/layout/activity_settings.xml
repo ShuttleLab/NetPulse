@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0D0D0D">
@@ -185,6 +186,35 @@
                     android:text="@string/lang_system"
                     android:textColor="#00E676"
                     android:textSize="14sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="#666666"
+                    android:textSize="18sp"
+                    android:layout_marginStart="6dp"/>
+
+            </LinearLayout>
+
+            <!-- Battery optimization (opens system settings list; user-initiated) -->
+            <LinearLayout
+                android:id="@+id/batteryRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/settings_battery"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"

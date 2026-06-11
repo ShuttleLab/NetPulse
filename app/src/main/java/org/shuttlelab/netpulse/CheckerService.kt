@@ -16,7 +16,7 @@ import java.net.URL
 class CheckerService : Service() {
 
     companion object {
-        const val CHANNEL_ID = "vpn_checker_channel"
+        const val CHANNEL_ID = "netpulse_status"
         const val NOTIF_ID = 1001
 
         // 连通性检测专用端点：返回 204 No Content，流量极小、不会触发验证码。
@@ -40,7 +40,7 @@ class CheckerService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        prefs = getSharedPreferences("vpnchecker", MODE_PRIVATE)
+        prefs = getSharedPreferences("netpulse", MODE_PRIVATE)
         migrateLegacyUrl()
         createNotificationChannel()
     }
@@ -49,7 +49,7 @@ class CheckerService : Service() {
         val notif = buildNotification(getString(R.string.notif_checking), Color.GRAY)
         // Android 14 起前台服务需指定 type；用 3 参版本更稳妥。
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(NOTIF_ID, notif, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC)
+            startForeground(NOTIF_ID, notif, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
         } else {
             startForeground(NOTIF_ID, notif)
         }
