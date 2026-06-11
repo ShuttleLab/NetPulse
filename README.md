@@ -9,6 +9,11 @@
   <p>
     <img src="docs/screenshot.png" alt="NetPulse screenshot" width="500" />
   </p>
+  <p>
+    🌐 <a href="https://netpulse.shuttlelab.org">netpulse.shuttlelab.org</a>
+    &nbsp;·&nbsp;
+    💻 Website source: <a href="https://github.com/ShuttleLab/netpulse-shuttle">ShuttleLab/netpulse-shuttle</a>
+  </p>
 </div>
 
 <div align="center">
