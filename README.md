@@ -7,7 +7,7 @@
     Continuously checks whether the open internet is reachable, shows your current exit IP and its location, and alerts you the moment the connection drops.
   </p>
   <p>
-    <img src="docs/screenshot.png" alt="NetPulse screenshot" width="380" />
+    <img src="docs/screenshot.png" alt="NetPulse screenshot" width="500" />
   </p>
 </div>
 
