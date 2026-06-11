@@ -6,6 +6,9 @@
   <p>
     Continuously checks whether the open internet is reachable, shows your current exit IP and its location, and alerts you the moment the connection drops.
   </p>
+  <p>
+    <img src="docs/screenshot.png" alt="NetPulse screenshot" width="280" />
+  </p>
 </div>
 
 <div align="center">
@@ -42,7 +45,7 @@ reports the state of your existing connection.
 ## Tech Stack
 
 - **Language:** Kotlin
-- **Platform:** Android SDK (minSdk 26 / targetSdk 34)
+- **Platform:** Android SDK (minSdk 26 / targetSdk 36)
 - **UI:** Material Components, View-based layouts
 - **Concurrency:** Kotlin Coroutines
 - **CI/CD:** GitHub Actions
