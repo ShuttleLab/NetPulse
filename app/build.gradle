@@ -11,8 +11,8 @@ android {
         applicationId "org.shuttlelab.netpulse"
         minSdk 26
         targetSdk 36
-        versionCode 5
-        versionName "1.0.4"
+        versionCode 6
+        versionName "1.0.5"
     }
 
     // 发布签名：CI 通过环境变量注入；本地/无密钥时回退到 debug 签名，保证 assembleRelease 不报错
